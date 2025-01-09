@@ -4,6 +4,7 @@ import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.DiscoverPage;
@@ -31,14 +32,17 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(){
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
         Configuration.browser = Browsers.CHROME;
         Configuration.pageLoadStrategy = "normal";
         Configuration.timeout = 60000;
-//        Configuration.clickViaJs = true;
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        Configuration.browserCapabilities = options;
+
+
         open();
-        getWebDriver().manage().window().maximize();
+//        getWebDriver().manage().window().maximize();
 
         loginPage = new LoginPage();
         discoverPage = new DiscoverPage();
