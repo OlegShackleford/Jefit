@@ -1,19 +1,9 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 public class LoginPage {
@@ -23,19 +13,65 @@ public class LoginPage {
     private static String SUBMIT_LOGIN_BUTTON = "//button[@type = 'submit']";
     private static String LOGIN_BUTTON = " //a[normalize-space()='Log In']";
     private static String CONTINUE_BUTTON = "//button[text() = 'Continue']";
+    private static String COMMUNITY_BUTTON = "//p[normalize-space()='Community']";
+    private static String BLOG_BUTTON = "//a[@href = '/blog/']";
+    private static String EXERCISES_BUTTON = "//a[normalize-space()='Exercises']";
+    private static String WORKOUTS_BUTTON = "//p[normalize-space()='Workouts']";
+    private static String ROUTINE_DATABASE_BUTTON = "//a[normalize-space()='Routine Database']";
 
-    WebDriverWait wait = new WebDriverWait(getWebDriver(),Duration.ofSeconds(5));
-
-    @Step("Skip modal window - 'Welcome'")
-    public void skip(){
-        log.info("Method: skip");
-        $x(CONTINUE_BUTTON).click();
+    @Step("Click to routine database")
+    public LoginPage clickToRoutineDatabase(){
+        log.info("Method: clickToRoutineDatabase");
+        $x(ROUTINE_DATABASE_BUTTON).click();
+        return this;
     }
+
+    @Step("Click to workouts")
+    public LoginPage clickToWorkouts(){
+        log.info("Method: clickToWorkouts");
+        $x(WORKOUTS_BUTTON).shouldBe(Condition.clickable).click();
+        return this;
+    }
+
+    @Step("Click to exercises")
+    public LoginPage clickToExercises(){
+        log.info("Method: clickToExercises");
+        $x(EXERCISES_BUTTON).shouldBe(Condition.clickable).click();
+        return this;
+    }
+
+    @Step("Is page opened")
+    public LoginPage isPageOpened(){
+        log.info("Method: isPageOpened");
+        $x(LOGIN_BUTTON).shouldBe(Condition.visible).shouldBe(Condition.clickable);
+        return this;
+    }
+
+    @Step("CLick to community")
+    public LoginPage clickToCommunity(){
+        log.info("Method: clickToCommunity");
+        $x(COMMUNITY_BUTTON).shouldBe(Condition.clickable).click();
+        return this;
+    }
+
+    @Step("CLick to blog")
+    public LoginPage clickToBlog(){
+        log.info("Method: clickToBlog");
+        $x(BLOG_BUTTON).click();
+        return this;
+    }
+
+//    @Step("Skip modal window - 'Welcome'")
+//    public void skip(){
+//        log.info("Method: skip");
+//        $x(CONTINUE_BUTTON).click();
+//    }
 
     @Step("Open main page")
     public LoginPage openPage(){
         log.info("Method: openPage");
         open("https://www.jefit.com/");
+        sleep(1000);
         return this;
     }
 

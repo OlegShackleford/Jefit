@@ -5,12 +5,10 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.DiscoverPage;
-import pages.ExercisesPage;
-import pages.LoginPage;
-import pages.ProgressPage;
+import pages.*;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -23,18 +21,19 @@ public class BaseTest {
     protected DiscoverPage discoverPage;
     protected ExercisesPage exercisesPage;
     protected ProgressPage progressPage;
+    protected BlogPage blogPage;
+    protected ExerciseDatabasePage exerciseDatabasePage;
+    protected RoutineDatabasePage routineDatabasePage;
+    protected WorkoutsPage workoutsPage;
 
     protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
     protected String password = System.getProperty("password",PropertyReader.getProperty("password"));
 
-//    protected String user = "nordhagen88@rambler.ru";
-//    protected String password = "Oleg2403";
-
     @BeforeMethod
     public void setUp(){
         Configuration.browser = Browsers.CHROME;
-        Configuration.pageLoadStrategy = "normal";
-        Configuration.timeout = 60000;
+//        Configuration.pageLoadStrategy = "normal";
+        Configuration.timeout = 90000;
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
@@ -48,6 +47,10 @@ public class BaseTest {
         discoverPage = new DiscoverPage();
         exercisesPage = new ExercisesPage();
         progressPage = new ProgressPage();
+        blogPage = new BlogPage();
+        exerciseDatabasePage = new ExerciseDatabasePage();
+        routineDatabasePage = new RoutineDatabasePage();
+        workoutsPage = new WorkoutsPage();
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
@@ -55,10 +58,10 @@ public class BaseTest {
         );
     }
 
-//    @AfterMethod(alwaysRun = true)
-//    public void tearDown(){
-//        if (getWebDriver() != null){
-//            getWebDriver().quit();
-//        }
-//    }
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(){
+        if (getWebDriver() != null){
+            getWebDriver().quit();
+        }
+    }
 }
