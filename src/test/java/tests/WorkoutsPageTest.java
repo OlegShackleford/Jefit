@@ -1,13 +1,22 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
+import tests.base.Retry;
+
+import static org.testng.Assert.assertTrue;
 
 public class WorkoutsPageTest extends BaseTest {
 
-    @Test(testName = "Check create new day plan")
+    public String newDayPlan = "New test name";
+    public String exercises = "Barbell Bench Press";
+    public String description = "This is test message for new day plan";
+    public String section = "Focus";
+    public String option = "Bulking";
+    public String plan = "6-Weeks to Six-Pack Abs";
+
+    @Test(retryAnalyzer = Retry.class,testName = "Check create new day plan",description = "")
     @Description("Test creating a new training day and delete after assert")
     public void checkCreateNewDayPlan(){
         loginPage
@@ -15,38 +24,38 @@ public class WorkoutsPageTest extends BaseTest {
                 .isPageOpened()
                 .clickToButtonLogin()
                 .login(user,password);
-
         workoutsPage
                 .openPage()
-                .isPageOpened()
                 .clickCreatePlan()
-                .editNameOfPlan("New test name")
-                .chooseOptions("Focus","Bulking")
-                .inputDescription("This is test message for new day plan")
+                .editNameOfPlan(newDayPlan)
+                .chooseOptions(section,option)
+                .inputDescription(description)
                 .clickAddExercises()
-                .selectExercises("Barbell Bench Press")
+                .selectExercises(exercises)
                 .clickFinishEditing();
-        Assert.assertTrue(workoutsPage.isDayPlanExist("New test name"),"This day plan doesnt exist");
-        workoutsPage.clickToMenu("New test name").chooseMenuOption("Delete").clickAcceptDelete();
+        assertTrue(workoutsPage.isDayPlanExist("New test name"),"This day plan doesnt exist");
+        delete(newDayPlan);
     }
 
-    @Test(testName = "Check printable day plan")
+    @Test(retryAnalyzer = Retry.class,testName = "Check printable day plan",description = "")
     @Description("Test of choosing a training plan and transition to creating a printed version. and delete after assert")
     public void checkPrintablePlan(){
-        String plan = "6-Weeks to Six-Pack Abs";
         loginPage
                 .openPage()
                 .isPageOpened()
                 .clickToButtonLogin()
                 .login(user,password);
-
         workoutsPage
                 .openFindPlan()
                 .selectPlan(plan)
                 .clickDownload()
                 .clickToMenu(plan)
                 .chooseMenuOption("Printable Version");
-        Assert.assertTrue(workoutsPage.isPlanSheetExist(plan),"This workout plan does not exist");
-        workoutsPage.openPage().clickToMenu(plan).chooseMenuOption("Delete").clickAcceptDelete();
+        assertTrue(workoutsPage.isPlanSheetExist(plan),"This workout plan does not exist");
+        delete(plan);
+    }
+
+    public void delete(String line){
+        workoutsPage.openPage().clickToMenu(line).chooseMenuOption("Delete").clickAcceptDelete();
     }
 }

@@ -73,8 +73,6 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>2.18.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -104,5 +102,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

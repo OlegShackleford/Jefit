@@ -8,16 +8,16 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class LoginPage {
 
-    private static String USER_INPUT = "//input[@name = 'username']";
-    private static String PASSWORD_INPUT = "//input[@name = 'password']";
-    private static String SUBMIT_LOGIN_BUTTON = "//button[@type = 'submit']";
-    private static String LOGIN_BUTTON = " //a[normalize-space()='Log In']";
-    private static String CONTINUE_BUTTON = "//button[text() = 'Continue']";
-    private static String COMMUNITY_BUTTON = "//p[normalize-space()='Community']";
-    private static String BLOG_BUTTON = "//a[@href = '/blog/']";
-    private static String EXERCISES_BUTTON = "//a[normalize-space()='Exercises']";
-    private static String WORKOUTS_BUTTON = "//p[normalize-space()='Workouts']";
-    private static String ROUTINE_DATABASE_BUTTON = "//a[normalize-space()='Routine Database']";
+    private final static String USER_INPUT = "//input[@name = 'username']";
+    private final static String PASSWORD_INPUT = "//input[@name = 'password']";
+    private final static String SUBMIT_LOGIN_BUTTON = "//button[@type = 'submit']";
+    private final static String LOGIN_BUTTON = " //a[normalize-space()='Log In']";
+    private final static String CONTINUE_BUTTON = "//button[text() = 'Continue']";
+    private final static String COMMUNITY_BUTTON = "//p[normalize-space()='Community']";
+    private final static String BLOG_BUTTON = "//a[@href = '/blog/']";
+    private final static String EXERCISES_BUTTON = "//a[normalize-space()='Exercises']";
+    private final static String WORKOUTS_BUTTON = "//p[normalize-space()='Workouts']";
+    private final static String ROUTINE_DATABASE_BUTTON = "//a[normalize-space()='Routine Database']";
 
     @Step("Click to routine database")
     public LoginPage clickToRoutineDatabase(){
@@ -61,26 +61,13 @@ public class LoginPage {
         return this;
     }
 
-//    @Step("Skip modal window - 'Welcome'")
-//    public void skip(){
-//        log.info("Method: skip");
-//        $x(CONTINUE_BUTTON).click();
-//    }
-
     @Step("Open main page")
     public LoginPage openPage(){
         log.info("Method: openPage");
         open("https://www.jefit.com/");
-        sleep(1000);
+        sleep(1500);
         return this;
     }
-
-//    public LoginPage isPageOpened(){
-//        log.info("Method: isPageOpened");
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LOGIN_BUTTON)));
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(LOGIN_BUTTON)));
-//        return this;
-//    }
 
     @Step("Click to button 'Login'")
     public LoginPage clickToButtonLogin(){
@@ -89,7 +76,7 @@ public class LoginPage {
         return this;
     }
 
-    @Step("Login with credentials")
+    @Step("Login with credentials: {user} , {password}")
     public LoginPage login(String user,String password){
         log.info("Method: login '{}','{}'",user,password);
         $x(USER_INPUT).setValue(user);

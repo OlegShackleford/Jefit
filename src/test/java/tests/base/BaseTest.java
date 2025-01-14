@@ -5,9 +5,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.annotations.*;
 import pages.*;
 import utils.PropertyReader;
 
@@ -27,21 +26,31 @@ public class BaseTest {
     protected WorkoutsPage workoutsPage;
 
     protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    protected String password = System.getProperty("password",PropertyReader.getProperty("password"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(){
-        Configuration.browser = Browsers.CHROME;
-//        Configuration.pageLoadStrategy = "normal";
-        Configuration.timeout = 90000;
+    public void setUp(@Optional("chrome") String browser) {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        Configuration.browserCapabilities = options;
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                Configuration.browserCapabilities = chromeOptions;
+                Configuration.timeout = 90000;
+                Configuration.browser = Browsers.CHROME;
+                break;
 
-
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless", "--width=1920", "--height=1080");
+                Configuration.browserCapabilities = firefoxOptions;
+                Configuration.timeout = 90000;
+                Configuration.browser = Browsers.FIREFOX;
+                break;
+        }
+        //       getWebDriver().manage().window().maximize();
         open();
-//        getWebDriver().manage().window().maximize();
 
         loginPage = new LoginPage();
         discoverPage = new DiscoverPage();
@@ -59,8 +68,8 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-        if (getWebDriver() != null){
+    public void tearDown() {
+        if (getWebDriver() != null) {
             getWebDriver().quit();
         }
     }
