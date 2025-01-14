@@ -10,17 +10,17 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class ProgressPage {
 
-    private static String LINK = "https://www.jefit.com/my-jefit/progress/history";
-    private static String UNIVERSAL_BUTTON = "//button[@type = 'button' and text() = '%s']";
-    private static String MODAL_WINDOW_ADD_NOTE = "//textarea[@name = 'content']";
-    private static String PATH_TO_NOTE = "//p[@data-slot = 'text' and contains(text(), '%s')]";
-    private static String MENU_OF_POST = PATH_TO_NOTE + "/following::button[@aria-haspopup = 'menu']";
-    private static String ADD_EXERCISES_TWO = "(//*[@aria-label='Add %s'])[2]";
-    private static String CLOSE = "//button[@type = 'button']/ancestor::div[@class = 'absolute top-2 right-2']";
-    private static String TRAINING_SUMMARY = "//h4[normalize-space()='%s']";
-    private static String MENU_OF_TRAINING_SUMMARY = "//*[normalize-space()='Training Summary 1']" +
+    private final static String LINK = "https://www.jefit.com/my-jefit/progress/history";
+    private final static String UNIVERSAL_BUTTON = "//button[@type = 'button' and text() = '%s']";
+    private final static String MODAL_WINDOW_ADD_NOTE = "//textarea[@name = 'content']";
+    private final static String PATH_TO_NOTE = "//p[@data-slot = 'text' and contains(text(), '%s')]";
+    private final static String MENU_OF_POST = PATH_TO_NOTE + "/following::button[@aria-haspopup = 'menu']";
+    private final static String ADD_EXERCISES_TWO = "(//*[@aria-label='Add %s'])[2]";
+    private final static String CLOSE = "//button[@type = 'button']/ancestor::div[@class = 'absolute top-2 right-2']";
+    private final static String TRAINING_SUMMARY = "//h4[normalize-space()='%s']";
+    private final static String MENU_OF_TRAINING_SUMMARY = "//*[normalize-space()='Training Summary 1']" +
             "/descendant::button[@aria-haspopup = 'menu']";
-    private static String DELETE_TRAINING_SUMMARY = "//p[@data-slot = 'text' and text() = 'Delete session']";
+    private final static String DELETE_TRAINING_SUMMARY = "//p[@data-slot = 'text' and text() = 'Delete session']";
 
     @Step("Is note exist {note}")
     public boolean isNoteExist(String note) {

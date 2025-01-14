@@ -1,13 +1,21 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
+import static org.testng.Assert.assertTrue;
+
 public class ExercisesPageTest extends BaseTest {
 
-    @Test(testName = "Check create custom exercises")
+    public String title = "Biceps test";
+    public String muscleType = "Biceps";
+    public String equipment = "Bench";
+    public String recordingType = "Reps";
+    public String description = "This is test description";
+
+
+    @Test(testName = "Check create custom exercises",description = "")
     @Description("Test create custom exercises and delete after assert")
     public void checkCreateCustomExercises(){
         loginPage
@@ -18,10 +26,10 @@ public class ExercisesPageTest extends BaseTest {
         exercisesPage
                 .openPage()
                 .clickButtonCreateCustomExercises()
-                .createExercises("Biceps test","Biceps",
-                        "Bench","Reps","This is test description")
+                .createExercises(title,muscleType,
+                        equipment,recordingType,description)
                 .clickButtonSafe();
-        Assert.assertTrue(exercisesPage.isExercisesExist("Biceps test"),"This exercises not exist");
-        exercisesPage.deleteProject("Biceps test");
+        assertTrue(exercisesPage.isExercisesExist("Biceps test"),"This exercises not exist");
+        exercisesPage.deleteProject(title);
     }
 }

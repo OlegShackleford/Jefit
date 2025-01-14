@@ -1,18 +1,17 @@
 package tests;
 
 import io.qameta.allure.Description;
-
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-
+import static org.testng.Assert.assertTrue;
 
 public class DiscoverPageTest extends BaseTest {
 
-    @Test(testName = "Create new post")
+    public String textForPost = "This is text for testing method checkCreateNewPost";
+
+    @Test(testName = "Create new post",description = "")
     @Description("Check create new post at page Discover. And Delete post after assert")
     public void checkCreateNewPost() {
-        String textForPost = "This is text for testing method checkCreateNewPost";
         loginPage
                 .openPage()
                 .clickToButtonLogin()
@@ -23,8 +22,7 @@ public class DiscoverPageTest extends BaseTest {
                 .clickButtonCreatePost()
                 .createNewPost(textForPost)
                 .clickButtonPost();
-
-        Assert.assertTrue(discoverPage.isPostExist("This is text for testing method checkCreateNewPost"),
+        assertTrue(discoverPage.isPostExist("This is text for testing method checkCreateNewPost"),
                 "Cant find this post");
         discoverPage.clickToButtonDelete("This is text");
     }

@@ -1,27 +1,34 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
+import static org.testng.Assert.assertEquals;
+
 public class ExerciseDatabasePageTest extends BaseTest {
 
-    @Test(testName = "Check count exercises with filter by muscle")
+    public String muscleGroup = "Biceps";
+    public String countExercisesMuscle = "103";
+    public String equipment = "Bench";
+    public String countExercisesEquipment = "49";
+    public String [] filters = {"Muscle","Difficulty"};
+    public String [] checkBox = {"Back","Beginner"};
+    public String countExercisesWithTwoFilters = "101";
+
+    @Test(testName = "Check count exercises with filter by muscle",description = "")
     @Description("Test filter by muscles with validation of the number of exercises")
     public void checkCountExercisesWithFilterByMuscle(){
         loginPage
                 .openPage()
                 .isPageOpened()
                 .clickToExercises();
-
         exerciseDatabasePage
                 .openPage()
                 .isPageOpened()
-                .chooseMuscleGroup("Biceps");
-
-        Assert.assertEquals(exerciseDatabasePage.getCountExercises(),
-                "103","Incorrect count exercises");
+                .chooseMuscleGroup(muscleGroup);
+        assertEquals(exerciseDatabasePage.getCountExercises(),
+                countExercisesMuscle,"Incorrect count exercises");
     }
 
     @Test(testName = "Check count exercises with filter by equipment")
@@ -31,15 +38,12 @@ public class ExerciseDatabasePageTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .clickToExercises();
-
         exerciseDatabasePage
                 .openPage()
                 .isPageOpened()
-                .chooseEquipmentGroup("Bench");
-
-        Assert.assertEquals(exerciseDatabasePage.getCountExercises(),
-                "49","Incorrect count exercises");
-
+                .chooseEquipmentGroup(equipment);
+        assertEquals(exerciseDatabasePage.getCountExercises(),
+                countExercisesEquipment,"Incorrect count exercises");
     }
 
     @Test(testName = "Check correctness of filters operation")
@@ -49,16 +53,14 @@ public class ExerciseDatabasePageTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .clickToExercises();
-
         exerciseDatabasePage
                 .openPage()
                 .isPageOpened()
                 .clickFilterButton()
-                .chooseFilters("Muscle","Back")
-                .chooseFilters("Difficulty","Beginner")
+                .chooseFilters(filters[0],checkBox[0])
+                .chooseFilters(filters[1],checkBox[1])
                 .clickApplyFilters();
-
-        Assert.assertEquals(exerciseDatabasePage.getCountExercises(),
-                "101","Incorrect count exercises");
+        assertEquals(exerciseDatabasePage.getCountExercises(),
+                countExercisesWithTwoFilters,"Incorrect count exercises");
     }
 }
