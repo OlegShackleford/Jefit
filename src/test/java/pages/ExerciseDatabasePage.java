@@ -57,7 +57,6 @@ public class ExerciseDatabasePage {
 
     @Step("Choose muscle group {muscle}")
     public ExerciseDatabasePage chooseMuscleGroup(String muscle) {
-        sleep(500);
         log.info("Method: chooseMuscleGroup ,{}", muscle);
         $x(String.format(FILTER_BY, muscle)).click();
         return this;
@@ -72,7 +71,8 @@ public class ExerciseDatabasePage {
 
     @Step("Get count exercises")
     public String getCountExercises() {
+        sleep(500);
         log.info("Method: getCountExercises");
-        return $x(COUNT_EXERCISES).getText().trim();
+        return $x(COUNT_EXERCISES).scrollTo().getText().trim();
     }
 }
