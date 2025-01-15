@@ -41,21 +41,21 @@ jobs:
 
       - name: Get Allure history
         uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
-        if: always()
-
-      - name: Generate Allure Report
+      - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
+        if: always()
         with:
           allure_results: target/allure-results
-          allure_history: gh-pages/allure-history
+          allure_history: allure-history
+      - name: Deploy report to Github Pages
         if: always()
-
-      - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: gh-pages/allure-history
-        if: always()
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
