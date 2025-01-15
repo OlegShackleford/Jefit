@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class WorkoutsPage {
 
     private final static String LINK = "https://www.jefit.com/my-jefit/workouts";
-    private final static String BUILD_YOUR_OWN_PLAN = "//button[normalize-space() = '+ Build your own plan']";
     private final static String FIND_PLAN = "https://www.jefit.com/my-jefit/workouts/find";
 //    private final static String LINK_OF_PLAN = "//p[text() = '%s']" +
 //            "/ancestor::div[@class = 'flex gap-4 items-center text-wrap']";
