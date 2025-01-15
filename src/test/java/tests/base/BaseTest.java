@@ -2,6 +2,7 @@ package tests.base;
 
 import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -49,7 +50,6 @@ public class BaseTest {
                 Configuration.browser = Browsers.FIREFOX;
                 break;
         }
-        //       getWebDriver().manage().window().maximize();
         open();
 
         loginPage = new LoginPage();
