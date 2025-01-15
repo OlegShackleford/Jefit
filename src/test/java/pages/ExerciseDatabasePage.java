@@ -57,17 +57,17 @@ public class ExerciseDatabasePage {
 
     @Step("Choose muscle group {muscle}")
     public ExerciseDatabasePage chooseMuscleGroup(String muscle) {
-        sleep(1500);
+        sleep(500);
         log.info("Method: chooseMuscleGroup ,{}", muscle);
-        $x(String.format(FILTER_BY, muscle)).click();
+        executeJavaScript("arguments[0].click();", $x(String.format(FILTER_BY, muscle)));
         return this;
     }
 
     @Step("Choose equipment {equipment}")
     public ExerciseDatabasePage chooseEquipmentGroup(String equipment) {
-        sleep(1500);
+        sleep(500);
         log.info("Method: chooseMuscleGroup ,{}", equipment);
-        $x(String.format(FILTER_BY, equipment)).click();
+        executeJavaScript("arguments[0].click();", $x(String.format(FILTER_BY, equipment)));
         return this;
     }
 
@@ -75,6 +75,6 @@ public class ExerciseDatabasePage {
     public String getCountExercises() {
         sleep(500);
         log.info("Method: getCountExercises");
-        return $x(COUNT_EXERCISES).scrollTo().getText().trim();
+        return $x(COUNT_EXERCISES).getText().trim();
     }
 }
