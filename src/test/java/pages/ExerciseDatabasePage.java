@@ -59,6 +59,7 @@ public class ExerciseDatabasePage {
     public ExerciseDatabasePage chooseMuscleGroup(String muscle) {
         log.info("Method: chooseMuscleGroup ,{}", muscle);
         $x(String.format(FILTER_BY, muscle)).click();
+        sleep(500);
         return this;
     }
 
@@ -66,6 +67,7 @@ public class ExerciseDatabasePage {
     public ExerciseDatabasePage chooseEquipmentGroup(String equipment) {
         log.info("Method: chooseMuscleGroup ,{}", equipment);
         $x(String.format(FILTER_BY, equipment)).click();
+        sleep(500);
         return this;
     }
 
