@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import static com.codeborne.selenide.Selenide.*;
@@ -62,6 +63,7 @@ public class LoginPage {
     }
 
     @Step("Open main page")
+    @Flaky
     public LoginPage openPage(){
         log.info("Method: openPage");
         open("https://www.jefit.com/");
@@ -70,6 +72,7 @@ public class LoginPage {
     }
 
     @Step("Click to button 'Login'")
+    @Flaky
     public LoginPage clickToButtonLogin(){
         log.info("Method: clickToButtonLogin");
         $x(LOGIN_BUTTON).shouldBe(Condition.visible).shouldBe(Condition.clickable).click();

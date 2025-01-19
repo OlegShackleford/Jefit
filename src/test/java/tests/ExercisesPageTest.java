@@ -1,6 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
@@ -14,22 +14,21 @@ public class ExercisesPageTest extends BaseTest {
     public String recordingType = "Reps";
     public String description = "This is test description";
 
-
-    @Test(testName = "Check create custom exercises",description = "")
+    @Test(testName = "Check create custom exercises",
+            description = "Test creating your own exercise with 4 parameters. And a comparison by name.")
     @Description("Test create custom exercises and delete after assert")
-    public void checkCreateCustomExercises(){
-        loginPage
-                .openPage()
-                .clickToButtonLogin()
-                .login(user,password);
-
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Exercises")
+    @Story("QA Engineer Chess creating your own exercise on the Exercises page")
+    @Owner("Olegsey")
+    public void checkCreateCustomExercises() {
+        loginStep.allLoginStep(user, password);
         exercisesPage
                 .openPage()
                 .clickButtonCreateCustomExercises()
-                .createExercises(title,muscleType,
-                        equipment,recordingType,description)
+                .createExercises(title, muscleType, equipment, recordingType, description)
                 .clickButtonSafe();
-        assertTrue(exercisesPage.isExercisesExist("Biceps test"),"This exercises not exist");
+        assertTrue(exercisesPage.isExercisesExist("Biceps test"), "This exercises not exist");
         exercisesPage.deleteProject(title);
     }
 }

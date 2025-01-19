@@ -2,13 +2,13 @@ package tests.base;
 
 import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.*;
 import pages.*;
+import steps.LoginStep;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -25,14 +25,13 @@ public class BaseTest {
     protected ExerciseDatabasePage exerciseDatabasePage;
     protected RoutineDatabasePage routineDatabasePage;
     protected WorkoutsPage workoutsPage;
-
+    protected LoginStep loginStep;
     protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
     protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @Parameters({"browser"})
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser) {
-
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -60,6 +59,7 @@ public class BaseTest {
         exerciseDatabasePage = new ExerciseDatabasePage();
         routineDatabasePage = new RoutineDatabasePage();
         workoutsPage = new WorkoutsPage();
+        loginStep = new LoginStep();
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
