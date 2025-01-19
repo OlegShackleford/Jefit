@@ -59,19 +59,21 @@ public class ExerciseDatabasePage {
     public ExerciseDatabasePage chooseMuscleGroup(String muscle) {
         sleep(500);
         log.info("Method: chooseMuscleGroup ,{}", muscle);
-        $x(String.format(FILTER_BY, muscle)).click();
+        executeJavaScript("arguments[0].click();", $x(String.format(FILTER_BY, muscle)));
         return this;
     }
 
     @Step("Choose equipment {equipment}")
     public ExerciseDatabasePage chooseEquipmentGroup(String equipment) {
+        sleep(500);
         log.info("Method: chooseMuscleGroup ,{}", equipment);
-        $x(String.format(FILTER_BY, equipment)).click();
+        executeJavaScript("arguments[0].click();", $x(String.format(FILTER_BY, equipment)));
         return this;
     }
 
     @Step("Get count exercises")
     public String getCountExercises() {
+        sleep(500);
         log.info("Method: getCountExercises");
         return $x(COUNT_EXERCISES).getText().trim();
     }

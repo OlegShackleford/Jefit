@@ -11,9 +11,11 @@ public class RoutineDatabasePage {
 
     private final static String LINK = "https://www.jefit.com/routines";
     private final static String LOADING_ELEMENT = "//img[@alt = 'HIIT: High Intensity Interval Training (Cardio)banner']";
-    private final static String COUNT_EXERCISES = "//span[@class = 'text-base/6 text-main-black dark:d-main-black font-semibold']";
+    private final static String COUNT_EXERCISES = "//span[@class = 'text-base/" +
+            "6 text-main-black dark:d-main-black font-semibold']";
     private final static String BUTTON_FILTER = "//span[text() = 'FILTERS ']/ancestor::button[@type = 'button']";
-    private final static String FILTER_IN_MODAL_WINDOW = "//div[normalize-space() = '%s']/following-sibling::button[@type = 'button']";
+    private final static String FILTER_IN_MODAL_WINDOW = "//div[normalize-space() = '%s']" +
+            "/following-sibling::button[@type = 'button']";
     private final static String CHECKBOX = "//span[@role = 'checkbox']/following-sibling::label[normalize-space() = '%s']";
     private final static String APPLY_FILTERS = "//button[normalize-space()='Apply Filters']";
     private final static String SORTED_BY_BUTTON = "//button[@id = 'headlessui-menu-button-:Rfpopuuduija:']";

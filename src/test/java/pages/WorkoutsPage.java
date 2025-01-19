@@ -10,11 +10,9 @@ import static com.codeborne.selenide.Selenide.*;
 public class WorkoutsPage {
 
     private final static String LINK = "https://www.jefit.com/my-jefit/workouts";
-    private final static String BUILD_YOUR_OWN_PLAN = "//button[normalize-space() = '+ Build your own plan']";
     private final static String FIND_PLAN = "https://www.jefit.com/my-jefit/workouts/find";
-//    private final static String LINK_OF_PLAN = "//p[text() = '%s']" +
-//            "/ancestor::div[@class = 'flex gap-4 items-center text-wrap']";
-    private final static String LINK_OF_PLAN2 = "//p[text() = '%s']/ancestor::td//a[@tabindex = '0' and @data-headlessui-state = '']";
+    private final static String LINK_OF_PLAN2 = "//p[text() = '%s']/ancestor::td//" +
+            "a[@tabindex = '0' and @data-headlessui-state = '']";
     private final static String DOWNLOAD_BUTTON = "//button[normalize-space() = 'Download']";
     private final static String MENU_OF_PLAN = "//*[normalize-space()='%s']" +
             "/following::button[@aria-haspopup = 'menu']";
