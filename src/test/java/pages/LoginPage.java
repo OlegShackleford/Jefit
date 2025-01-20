@@ -67,7 +67,7 @@ public class LoginPage {
     public LoginPage openPage(){
         log.info("Method: openPage");
         open("https://www.jefit.com/");
-        sleep(1500);
+        sleep(2000);
         return this;
     }
 
