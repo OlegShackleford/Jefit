@@ -3,11 +3,11 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 public class ExerciseDatabasePage {
+
     private final static String Link = "https://www.jefit.com/exercises";
     private final static String FILTER_BY = "//button[@type = 'button']/descendant::p[text() = '%s']";
     private final static String COUNT_EXERCISES = "//span[@class = 'text-base/6 text-main-black dark:d-main-black font-semibold']";

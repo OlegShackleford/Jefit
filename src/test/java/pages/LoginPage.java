@@ -21,51 +21,51 @@ public class LoginPage {
     private final static String ROUTINE_DATABASE_BUTTON = "//a[normalize-space()='Routine Database']";
 
     @Step("Click to routine database")
-    public LoginPage clickToRoutineDatabase(){
+    public LoginPage clickToRoutineDatabase() {
         log.info("Method: clickToRoutineDatabase");
         $x(ROUTINE_DATABASE_BUTTON).click();
         return this;
     }
 
     @Step("Click to workouts")
-    public LoginPage clickToWorkouts(){
+    public LoginPage clickToWorkouts() {
         log.info("Method: clickToWorkouts");
         $x(WORKOUTS_BUTTON).shouldBe(Condition.clickable).click();
         return this;
     }
 
     @Step("Click to exercises")
-    public LoginPage clickToExercises(){
+    public LoginPage clickToExercises() {
         log.info("Method: clickToExercises");
         $x(EXERCISES_BUTTON).shouldBe(Condition.clickable).click();
         return this;
     }
 
-    @Step("Is page opened")
-    public LoginPage isPageOpened(){
-        log.info("Method: isPageOpened");
+    @Step("Is LoginPage opened")
+    public LoginPage isPageOpened() {
+        log.info("Method: isPageOpened 'LoginPage'");
         $x(LOGIN_BUTTON).shouldBe(Condition.visible).shouldBe(Condition.clickable);
         return this;
     }
 
     @Step("CLick to community")
-    public LoginPage clickToCommunity(){
+    public LoginPage clickToCommunity() {
         log.info("Method: clickToCommunity");
         $x(COMMUNITY_BUTTON).shouldBe(Condition.clickable).click();
         return this;
     }
 
     @Step("CLick to blog")
-    public LoginPage clickToBlog(){
+    public LoginPage clickToBlog() {
         log.info("Method: clickToBlog");
         $x(BLOG_BUTTON).click();
         return this;
     }
 
-    @Step("Open main page")
+    @Step("Open LoginPage")
     @Flaky
-    public LoginPage openPage(){
-        log.info("Method: openPage");
+    public LoginPage openPage() {
+        log.info("Method: openPage 'LoginPage'");
         open("https://www.jefit.com/");
         sleep(2000);
         return this;
@@ -73,15 +73,15 @@ public class LoginPage {
 
     @Step("Click to button 'Login'")
     @Flaky
-    public LoginPage clickToButtonLogin(){
+    public LoginPage clickToButtonLogin() {
         log.info("Method: clickToButtonLogin");
         $x(LOGIN_BUTTON).shouldBe(Condition.visible).shouldBe(Condition.clickable).click();
         return this;
     }
 
     @Step("Login with credentials: {user} , {password}")
-    public LoginPage login(String user,String password){
-        log.info("Method: login '{}','{}'",user,password);
+    public LoginPage login(String user, String password) {
+        log.info("Method: login '{}','{}'", user, password);
         $x(USER_INPUT).setValue(user);
         $x(PASSWORD_INPUT).setValue(password);
         $x(SUBMIT_LOGIN_BUTTON).click();

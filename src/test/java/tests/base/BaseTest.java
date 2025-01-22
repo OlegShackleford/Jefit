@@ -10,7 +10,6 @@ import org.testng.annotations.*;
 import pages.*;
 import steps.LoginStep;
 import utils.PropertyReader;
-
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 

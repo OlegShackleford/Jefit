@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -25,9 +24,9 @@ public class ExercisesPage {
     private final String DELETE_BUTTON = "//div[@data-slot = 'label' and text() = 'Delete']";
     private final String CONFIRM_DELETE_BUTTON = "//button[@type = 'button' and text() = 'Delete']";
 
-    @Step("Open page")
+    @Step("Open ExercisesPage")
     public ExercisesPage openPage() {
-        log.info("Method: ");
+        log.info("Method: openPage 'ExercisesPage'");
         open(LINK);
         return this;
     }
@@ -40,9 +39,10 @@ public class ExercisesPage {
     }
 
     @Step("Create exercises")
-    public ExercisesPage createExercises(String title, String muscleType, String equipment,
-                                         String recordingType, String description) {
-        log.info("Method: createExercises ,{},{},{},{},{}", title, muscleType, equipment, recordingType, description);
+    public ExercisesPage createExercises(
+            String title, String muscleType, String equipment, String recordingType, String description) {
+        log.info("Method: createExercises ,{},{},{},{},{}",
+                title, muscleType, equipment, recordingType, description);
         $x(EXERCISES_TITLE_INPUT).setValue(title);
         $x(MUSCLE_GROUP_SELECT).click();
         $x(String.format(OPTIONS, muscleType)).click();

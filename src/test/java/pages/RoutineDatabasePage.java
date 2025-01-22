@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
@@ -68,16 +67,16 @@ public class RoutineDatabasePage {
         return this;
     }
 
-    @Step("Open page")
+    @Step("Open RoutineDatabasePage")
     public RoutineDatabasePage openPage() {
-        log.info("Method: openPage");
+        log.info("Method: openPage 'RoutineDatabasePage'");
         open(LINK);
         return this;
     }
 
-    @Step("Is page opened")
+    @Step("Is RoutineDatabasePage opened")
     public RoutineDatabasePage isPageOpened() {
-        log.info("Method: isPageOpened");
+        log.info("Method: isPageOpened 'RoutineDatabasePage'");
         $x(LOADING_ELEMENT).shouldBe(Condition.visible);
         return this;
     }

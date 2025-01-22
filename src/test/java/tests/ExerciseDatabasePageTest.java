@@ -3,7 +3,6 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-
 import static org.testng.Assert.assertEquals;
 
 public class ExerciseDatabasePageTest extends BaseTest {

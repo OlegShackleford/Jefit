@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
@@ -80,7 +79,7 @@ public class ProgressPage {
 
     @Step("Open Progress page")
     public ProgressPage openPage() {
-        log.info("Method: openPage");
+        log.info("Method: openPage 'ProgressPage'");
         open(LINK);
         return this;
     }

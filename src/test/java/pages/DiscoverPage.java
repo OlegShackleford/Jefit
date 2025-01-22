@@ -2,7 +2,6 @@ package pages;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -18,9 +17,9 @@ public class DiscoverPage {
     private final static String MENU_OF_POST = PATH_TO_POST +
             "/ancestor::div[contains(@class, 'flex')][1]//button[@aria-haspopup='menu']";
 
-    @Step("Open page")
+    @Step("Open DiscoverPage")
     public DiscoverPage openPage() {
-        log.info("Method: ");
+        log.info("Method: openPage 'DiscoverPage'");
         open(LINK);
         return this;
     }

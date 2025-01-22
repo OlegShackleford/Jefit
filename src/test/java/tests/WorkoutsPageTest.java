@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 import tests.base.Retry;
-
 import static org.testng.Assert.assertTrue;
 
 public class WorkoutsPageTest extends BaseTest {

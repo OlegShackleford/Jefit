@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
@@ -14,9 +13,7 @@ public class WorkoutsPage {
     private final static String LINK_OF_PLAN2 = "//p[text() = '%s']/ancestor::td//" +
             "a[@tabindex = '0' and @data-headlessui-state = '']";
     private final static String DOWNLOAD_BUTTON = "//button[normalize-space() = 'Download']";
-    private final static String MENU_OF_PLAN = "//*[normalize-space()='%s']" +
-            "/following::button[@aria-haspopup = 'menu']";
-    private final static String MENU_OF_PLAN2 = "//p[normalize-space()='%s']/following::button[@aria-haspopup = 'menu'][1]";
+    private final static String MENU_OF_PLAN = "//p[normalize-space()='%s']/following::button[@aria-haspopup = 'menu'][1]";
     private final static String MENU_OPTION = "//div[normalize-space() = '%s']";
     private final static String SHEET_OF_PLAN = "//strong[normalize-space() = '%s']";
     private final static String ACCEPT_DELETE = "//button[normalize-space() = 'Delete']";
@@ -114,7 +111,7 @@ public class WorkoutsPage {
     public WorkoutsPage clickToMenu(String plan) {
         log.info("Method: clickToMenu, '{}'", plan);
         sleep(500);
-        $x(String.format(MENU_OF_PLAN2, plan)).shouldBe(Condition.visible).click();
+        $x(String.format(MENU_OF_PLAN, plan)).shouldBe(Condition.visible).click();
         return this;
     }
 
@@ -139,9 +136,9 @@ public class WorkoutsPage {
         return this;
     }
 
-    @Step("Open page")
+    @Step("Open WorkoutsPage")
     public WorkoutsPage openPage() {
-        log.info("Method: openPage");
+        log.info("Method: openPage 'WorkoutsPage'");
         open(LINK);
         sleep(1500);
         return this;
